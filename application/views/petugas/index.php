@@ -164,11 +164,11 @@
                                     </button>
                                   </div>
                                   <div class="modal-body">
-                                    Apakah anda ingin menghapus data <?= $ptg['nama_lokasi']?>
+                                    Apakah anda ingin menghapus data <?= $ptg['nama_petugas']?>
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <a href="<?= base_url()?>petugas/hapus/<?= $ptg['id_petugas']?>" class="btn btn-danger">Hapus</a>
+                                    <a href="<?= base_url()?>petugas/delete/<?= $ptg['id_petugas']?>" class="btn btn-danger">Hapus</a>
                                   </div>
                                 </div>
                               </div>

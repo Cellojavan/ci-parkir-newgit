@@ -57,8 +57,17 @@ class Petugas extends CI_Controller{
 
             $this->petugas_model->editPetugas();
             $this->session->set_flashdata('flash', 'Diubah');
-            redirect(bae_url('petugas'));
+            redirect(base_url('petugas'));
         }
+    }
+
+    public function delete($id){
+
+        $this->db->where('id_petugas', $id);
+        $this->db->delete("petugas");
+
+        $this->session->set_flashdata('flash', 'Dihapus');
+        redirect(base_url('petugas'));
     }
 }
 

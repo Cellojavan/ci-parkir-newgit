@@ -25,6 +25,19 @@ class petugas_model extends CI_model{
         return $this->db->get_where('petugas', ['id_petugas' => $id])->row_array();
 
     }
+
+    public function editPetugas(){
+
+        $data = [
+
+            "lokasi_id" => $this->input->post('lokasiid'),
+            "nama_petugas" => $this->input->post('namapetugas'),
+        ];
+
+        $this->db->where('id_petugas', $this->input->post('id'));
+        $this->db->update('petugas', $data);
+
+    }
 }
 
 ?>
