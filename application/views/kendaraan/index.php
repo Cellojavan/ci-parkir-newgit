@@ -128,52 +128,43 @@
                   </button>
                 </div>
                 <?php endif ?>
-              <a href="<?= base_url('')?>parkir/tambah" class="btn btn-primary mb-3 ">Tambah Parkir</a>
+              <a href="<?= base_url('')?>kendaraan/tambah" class="btn btn-primary mb-3 ">Tambah Kendaraan</a>
 
               <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th scope="col">No</th>
-                        <th scope="col">Tgl In</th>
-                        <th scope="col">Tgl Out</th>
-                        <th scope="col">Petugas Id</th>
                         <th scope="col">Lokasi Id</th>
-                        <th scope="col">Kendaraan Id</th>
-                        <th scope="col">Nopol</th>
-                        <th scope="col">Tarif</th>
+                        <th scope="col">Kendaraan</th>
+                        <th scope="col">Tarif Parkir</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $i = 1;?>
-                    <?php 
-                    
+                    <?php
                     function rupiah($angka){
+                        $duit = "Rp" . number_format($angka, '2', ',', '.');
+                        return $duit;
 
-                        $hasil = "Rp " . number_format($angka, '2', ',', '.');
-                        return $hasil;
                     }
                     
                     ?>
-                    <?php foreach($parkir as $pk) : ?>
+                    <?php $i = 1;?>
+                    <?php foreach($kendaraan as $kndr) : ?>
                     <tr>
                         <td><?= $i++;?></td>
-                        <td><?= $pk['tgl_in'] ?></td>
-                        <td><?= $pk['tgl_out'] ?></td>
-                        <td><?= $pk['petugas_id'] ?></td>
-                        <td><?= $pk['lokasi_id'] ?></td>
-                        <td><?= $pk['jenis_kendaraan_id'] ?></td>
-                        <td><?= $pk['nopol_kendaraan'] ?></td>
-                        <td><?= rupiah($pk['tarif']) ?></td>
+                        <td><?= $kndr['lokasi_id'] ?></td>
+                        <td><?= $kndr['jenis_kendaraan'] ?></td>
+                        <td><?= rupiah($kndr['tarif_parkir']) ?></td>
                         <td>
-                            <a href="<?= base_url()?>parkir/edit/<?= $pk['id_parkir']?>" class="btn btn-warning">Edit</a>
+                            <a href="<?= base_url()?>kendaraan/edit/<?= $kndr['id_jenis_kendaraan']?>" class="btn btn-warning">Edit</a>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus<?= $pk['id_parkir']?>">
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus<?= $kndr['id_jenis_kendaraan']?>">
                               Hapus
                             </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="hapus<?= $pk['id_parkir']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="hapus<?= $kndr['id_jenis_kendaraan']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
@@ -183,11 +174,11 @@
                                     </button>
                                   </div>
                                   <div class="modal-body">
-                                    Apakah anda ingin menghapus data <?= $pk['nopol_kendaraan']?>
+                                    Apakah anda ingin menghapus data <?= $kndr['jenis_kendaraan']?>
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <a href="<?= base_url()?>parkir/hapus/<?= $pk['id_parkir']?>" class="btn btn-danger">Hapus</a>
+                                    <a href="<?= base_url()?>kendaraan/delete/<?= $kndr['id_jenis_kendaraan']?>" class="btn btn-danger">Hapus</a>
                                   </div>
                                 </div>
                               </div>
