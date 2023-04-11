@@ -6,12 +6,20 @@ class User extends CI_Controller {
 
         $this->load->library('form_validation');
         $this->load->model('user_model');
+        $this->session->userdata("hak_akses");
+        if($this->session->userdata("hak_akses") == "admin"){
+            
+        }else{
+            $this->session->set_flashdata('flash', 'anda tidak memiliki akses');
+            redirect(base_url('login'));
+        }
     }
-
+   
     public function index(){
 
         $data['judul'] = 'Halaman User';
         $data['user'] = $this->user_model->getAllUser();
+        $data['nama'] = $this->user_model->getByNama();
         $this->load->view('templates/header', $data);
         $this->load->view('user/index', $data);
         $this->load->view('templates/footer');

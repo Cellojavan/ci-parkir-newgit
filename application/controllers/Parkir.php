@@ -8,12 +8,23 @@ class Parkir extends CI_Controller{
 
         $this->load->library('form_validation');
         $this->load->model('parkir_model');
+        if($this->session->userdata("hak_akses") == "admin"){
+            
+        }elseif($this->session->userdata("hak_akses") == "manager"){
+            
+        }elseif($this->session->userdata("hak_akses") == "petugas"){
+
+        }else{
+            $this->session->set_flashdata('flash', 'anda tidak memiliki akses');
+            redirect(base_url('login'));
+        }
     }
 
     public function index(){
 
         $data['judul'] = 'Halaman Parkir';
         $data['parkir'] = $this->parkir_model->getAllParkir();
+        $data['nama'] = $this->parkir_model->getByNama();
         $this->load->view('templates/header',$data);
         $this->load->view('parkir/index',$data);
         $this->load->view('templates/footer');

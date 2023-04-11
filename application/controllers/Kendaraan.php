@@ -8,13 +8,22 @@ class Kendaraan extends CI_Controller{
 
         $this->load->model("kendaraan_model");
         $this->load->library("form_validation");
-    
+
+        if($this->session->userdata("hak_akses") == "admin"){
+            
+        }elseif($this->session->userdata("hak_akses") == "manager"){
+
+        }else{
+            $this->session->set_flashdata('flash', 'anda tidak memiliki akses');
+            redirect(base_url('login'));
+        }
     }
 
     public function index(){
 
         $data['judul'] = "Halaman Kendaraan";
         $data['kendaraan'] = $this->kendaraan_model->getKendaraan();
+        $data['nama'] = $this->kendaraan_model->getByNama();
         $this->load->view("templates/header",$data);
         $this->load->view("kendaraan/index",$data);
         $this->load->view("templates/footer");

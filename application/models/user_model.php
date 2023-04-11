@@ -44,6 +44,11 @@ class user_model extends CI_model {
         $this->db->update('user', $data);
 
     }
+
+    public function getByNama(){
+
+        return $this->db->get_where('user', ["hak_akses" => $this->session->userdata["hak_akses"]])->row_array();
+    }
 }
 
 ?>

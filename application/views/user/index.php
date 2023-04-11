@@ -1,4 +1,7 @@
 <div class="wrapper">
+  <?php
+  
+  ?>
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -33,9 +36,18 @@
           <img src="dist/img/352174_user_icon.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
+          <?php if($this->session->userdata("hak_akses") == "admin") {?>
           <a href="#" class="d-block">Admin</a>
+          <?php } ?>
+          <?php if($this->session->userdata("hak_akses") == "petugas") {?>
+          <a href="#" class="d-block">Petugas</a>
+          <?php } ?>
+          <?php if($this->session->userdata("hak_akses") == "manager") {?>
+          <a href="#" class="d-block">Manager</a>
+          <?php } ?>
         </div>
       </div>
+    
 
 
       <!-- Sidebar Menu -->
@@ -43,7 +55,8 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-               <li class="nav-item">
+              <?php if($this->session->userdata("hak_akses") == "admin") { ?>
+                <li class="nav-item">
                     <a href="<?= base_url()?>lokasi" class="nav-link">
                     <i class="fas fa-map-marker-alt">&nbsp&nbsp</i>
                     <p>
@@ -83,6 +96,44 @@
                     </p>
                     </a>       
                 </li>
+              <?php } ?>
+              <?php if($this->session->userdata("hak_akses") == "manager") { ?>
+               <li class="nav-item">
+                    <a href="<?= base_url()?>kendaraan" class="nav-link">
+                    <i class="fas fa-car">&nbsp</i>    
+                    <p>
+                        Jenis Kendaraan
+                    </p>
+                    </a>       
+                </li>
+               <li class="nav-item">
+                    <a href="<?= base_url()?>parkir" class="nav-link">
+                    <i class="fas fa-parking">&nbsp&nbsp</i>
+                    <p>
+                        Parkir
+                    </p>
+                    </a>       
+                </li>
+               <li class="nav-item">
+                    <a href="<?= base_url()?>petugas" class="nav-link">
+                    <i class="fas fa-user-cog">&nbsp</i>
+                    <p>
+                        Petugas
+                    </p>
+                    </a>       
+                </li>
+              <?php } ?>
+              <?php if($this->session->userdata("hak_akses") == "petugas") { ?>
+                <li class="nav-item">
+                    <a href="<?= base_url()?>parkir" class="nav-link">
+                    <i class="fas fa-parking">&nbsp&nbsp</i>
+                    <p>
+                        Parkir
+                    </p>
+                    </a>       
+                </li>
+              <?php } ?>
+               
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -128,7 +179,16 @@
                   </button>
                 </div>
                 <?php endif ?>
+                <?php if($this->session->flashdata('login')) :?>
+                  <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <?= $this->session->flashdata('login');?>&nbsp<strong><?= $nama['nama_user']?></strong> 
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <?php endif ?>
               <a href="<?= base_url('')?>user/tambah" class="btn btn-primary mb-3 ">Tambah User</a>
+              <a href="<?= base_url('')?>login/logout" class="btn btn-danger mb-3 float-right ">Logout</a>
 
               <table class="table table-bordered">
                 <thead>

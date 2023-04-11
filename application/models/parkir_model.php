@@ -48,6 +48,10 @@ class parkir_model extends CI_model{
         $this->db->where("id_parkir", $this->input->post("id"));
         $this->db->update("parkir", $data);
     }
+    public function getByNama(){
+
+        return $this->db->get_where('user', ["hak_akses" => $this->session->userdata["hak_akses"]])->row_array();
+    }
 
 }
 

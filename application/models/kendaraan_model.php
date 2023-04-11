@@ -34,6 +34,11 @@ class kendaraan_model extends CI_model{
         $this->db->where("id_jenis_kendaraan", $this->input->post("id"));
         $this->db->update("jenis_kendaraan", $data);
     }
+
+    public function getByNama(){
+
+        return $this->db->get_where('user', ["hak_akses" => $this->session->userdata["hak_akses"]])->row_array();
+    }
 }
 
 ?>
