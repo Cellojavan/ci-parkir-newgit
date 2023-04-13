@@ -53,10 +53,10 @@
                with font-awesome or any other icon font library -->
                <?php if($this->session->userdata("hak_akses") == "admin") { ?>
                 <li class="nav-item">
-                    <a href="<?= base_url()?>lokasi" class="nav-link">
-                    <i class="fas fa-map-marker-alt">&nbsp&nbsp</i>
+                    <a href="<?= base_url()?>" class="nav-link">
+                    <i class="fas fa-users">&nbsp</i>
                     <p>
-                        Lokasi
+                        User
                     </p>
                     </a>       
                 </li>
@@ -84,11 +84,11 @@
                     </p>
                     </a>       
                 </li>
-               <li class="nav-item">
+                <li class="nav-item">
                     <a href="<?= base_url()?>lokasi" class="nav-link">
-                    <i class="fas fa-users">&nbsp</i>
+                    <i class="fas fa-map-marker-alt">&nbsp&nbsp</i>
                     <p>
-                        User
+                        Lokasi
                     </p>
                     </a>       
                 </li>

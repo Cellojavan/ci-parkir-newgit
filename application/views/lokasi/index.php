@@ -44,10 +44,10 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                <li class="nav-item">
-                    <a href="<?= base_url()?>lokasi" class="nav-link">
-                    <i class="fas fa-map-marker-alt">&nbsp&nbsp</i>
+                    <a href="<?= base_url()?>user" class="nav-link">
+                    <i class="fas fa-users">&nbsp</i>
                     <p>
-                        Lokasi
+                        User
                     </p>
                     </a>       
                 </li>
@@ -75,14 +75,15 @@
                     </p>
                     </a>       
                 </li>
-               <li class="nav-item">
-                    <a href="<?= base_url()?>user" class="nav-link">
-                    <i class="fas fa-users">&nbsp</i>
+                <li class="nav-item">
+                    <a href="<?= base_url()?>lokasi" class="nav-link">
+                    <i class="fas fa-map-marker-alt">&nbsp&nbsp</i>
                     <p>
-                        User
+                        Lokasi
                     </p>
                     </a>       
                 </li>
+               
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -129,7 +130,8 @@
                 </div>
                 <?php endif ?>
               <a href="<?= base_url('')?>lokasi/tambah" class="btn btn-primary mb-3 ">Tambah Lokasi</a>
-
+              <a href="<?= base_url('')?>login/logout" class="btn btn-danger mb-3 float-right ">Logout</a>
+      
               <table class="table table-bordered">
                 <thead>
                     <tr>

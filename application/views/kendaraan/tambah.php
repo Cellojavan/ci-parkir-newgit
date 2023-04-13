@@ -188,7 +188,7 @@
               
              
               <form action="" method="post">
-                <div class="form-group">
+               <div class="form-group">
                         <label for="lokasiid">Lokasi ID</label>
                         <small  class="form-text text-muted">1 : Trenggalek</small>
                         <small  class="form-text text-muted">2 : Sidoarjo</small>

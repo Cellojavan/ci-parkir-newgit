@@ -5,7 +5,10 @@ class petugas_model extends CI_model{
 
     public function getPetugas(){
 
-        return $query = $this->db->get('petugas')->result_array();
+        $this->db->select("*");
+        $this->db->from("petugas");
+        $this->db->join("lokasi", "lokasi.id_lokasi = petugas.lokasi_id", "left");
+        return $this->db->get()->result_array();
     }
 
     public function tambahPetugas(){

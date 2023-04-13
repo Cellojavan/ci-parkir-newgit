@@ -51,11 +51,12 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-               <li class="nav-item">
-                    <a href="<?= base_url()?>lokasi" class="nav-link">
-                    <i class="fas fa-map-marker-alt">&nbsp&nbsp</i>
+               <?php if($this->session->userdata("hak_akses") == "admin") { ?>
+                <li class="nav-item">
+                    <a href="<?= base_url()?>" class="nav-link">
+                    <i class="fas fa-users">&nbsp</i>
                     <p>
-                        Lokasi
+                        User
                     </p>
                     </a>       
                 </li>
@@ -83,14 +84,51 @@
                     </p>
                     </a>       
                 </li>
-               <li class="nav-item">
-                    <a href="<?= base_url()?>user" class="nav-link">
-                    <i class="fas fa-users">&nbsp</i>
+                <li class="nav-item">
+                    <a href="<?= base_url()?>lokasi" class="nav-link">
+                    <i class="fas fa-map-marker-alt">&nbsp&nbsp</i>
                     <p>
-                        User
+                        Lokasi
                     </p>
                     </a>       
                 </li>
+              <?php } ?>
+              <?php if($this->session->userdata("hak_akses") == "manager") { ?>
+               <li class="nav-item">
+                    <a href="<?= base_url()?>kendaraan" class="nav-link">
+                    <i class="fas fa-car">&nbsp</i>    
+                    <p>
+                        Jenis Kendaraan
+                    </p>
+                    </a>       
+                </li>
+               <li class="nav-item">
+                    <a href="<?= base_url()?>parkir" class="nav-link">
+                    <i class="fas fa-parking">&nbsp&nbsp</i>
+                    <p>
+                        Parkir
+                    </p>
+                    </a>       
+                </li>
+               <li class="nav-item">
+                    <a href="<?= base_url()?>petugas" class="nav-link">
+                    <i class="fas fa-user-cog">&nbsp</i>
+                    <p>
+                        Petugas
+                    </p>
+                    </a>       
+                </li>
+              <?php } ?>
+              <?php if($this->session->userdata("hak_akses") == "petugas") { ?>
+                <li class="nav-item">
+                    <a href="<?= base_url()?>parkir" class="nav-link">
+                    <i class="fas fa-parking">&nbsp&nbsp</i>
+                    <p>
+                        Parkir
+                    </p>
+                    </a>       
+                </li>
+              <?php } ?>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -137,7 +175,7 @@
                 </div>
                 <?php endif ?>
               <a href="<?= base_url('')?>petugas/tambah" class="btn btn-primary mb-3 ">Tambah Petugas</a>
-
+              <a href="<?= base_url('')?>login/logout" class="btn btn-danger mb-3 float-right ">Logout</a>
               <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -152,7 +190,7 @@
                     <?php foreach($petugas as $ptg) : ?>
                     <tr>
                         <td><?= $i++;?></td>
-                        <td><?= $ptg['lokasi_id'] ?></td>
+                        <td><?= $ptg['nama_lokasi'] ?></td>
                         <td><?= $ptg['nama_petugas'] ?></td>
                           
                         <td>

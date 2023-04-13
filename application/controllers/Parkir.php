@@ -58,6 +58,7 @@ class Parkir extends CI_Controller{
     public function edit($id){
 
         $data['judul'] = "Halaman Tambah Parkir";
+        $data['id'] = ['1', '2'];
         $data['parkir'] = $this->parkir_model->getById($id);
 
         $this->form_validation->set_rules('tglin', 'Tgl In', 'required');

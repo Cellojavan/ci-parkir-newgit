@@ -5,7 +5,12 @@ class parkir_model extends CI_model{
 
     public function getAllParkir(){
 
-        return $query = $this->db->get("parkir")->result_array();
+        $this->db->select("*");
+        $this->db->from("parkir");
+        $this->db->join("lokasi", "lokasi.id_lokasi = parkir.lokasi_id", "left");
+        $this->db->join("petugas", "petugas.id_petugas = parkir.petugas_id", "left");
+        $this->db->join("jenis_kendaraan", "jenis_kendaraan.id_jenis_kendaraan = parkir.jenis_kendaraan_id", "left");
+        return $this->db->get()->result_array();
     }
 
     public function tambahParkir(){

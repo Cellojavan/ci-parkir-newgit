@@ -53,6 +53,7 @@ class Petugas extends CI_Controller{
     public function edit($id){
 
         $data['judul'] = "Edit Petugas";
+        $data['lokasi'] = ['1', '2'];
         $data['petugas'] = $this->petugas_model->getById($id);
         $this->form_validation->set_rules('namapetugas', 'Nama Petugas', 'required');
         $this->form_validation->set_rules('lokasiid', 'Lokasi Id', 'required|numeric');
