@@ -154,6 +154,7 @@
                         <td><?= $i++;?></td>
                         <td><?= $ptg['lokasi_id'] ?></td>
                         <td><?= $ptg['nama_petugas'] ?></td>
+                          
                         <td>
                             <a href="<?= base_url()?>petugas/edit/<?= $ptg['id_petugas']?>" class="btn btn-warning">Edit</a>
                             <!-- Button trigger modal -->
@@ -184,6 +185,8 @@
                         </td>
                     </tr>
                 </tbody>
+                
+                
                 <?php endforeach; ?>
             </table>
 

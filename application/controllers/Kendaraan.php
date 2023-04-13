@@ -22,6 +22,7 @@ class Kendaraan extends CI_Controller{
     public function index(){
 
         $data['judul'] = "Halaman Kendaraan";
+        $data['lokasi'] = ['1', '2', '3'];
         $data['kendaraan'] = $this->kendaraan_model->getKendaraan();
         $data['nama'] = $this->kendaraan_model->getByNama();
         $this->load->view("templates/header",$data);
@@ -53,6 +54,7 @@ class Kendaraan extends CI_Controller{
 
         $data['judul'] = "Halaman Ubah";
         $data['kendaraan'] = $this->kendaraan_model->GetById($id);
+        $data['lokasi'] = ['1', '2'];
         $this->form_validation->set_rules('lokasiid','Lokasi ID', 'required|numeric');
         $this->form_validation->set_rules('jeniskendaraan',' Jenis Kendaraan', 'required');
         $this->form_validation->set_rules('tarif',' Tarif Parkir', 'required|numeric');

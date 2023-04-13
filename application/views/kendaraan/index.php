@@ -209,7 +209,7 @@
                     <?php foreach($kendaraan as $kndr) : ?>
                     <tr>
                         <td><?= $i++;?></td>
-                        <td><?= $kndr['lokasi_id'] ?></td>
+                        <td><?= $kndr['nama_lokasi'] ?></td>
                         <td><?= $kndr['jenis_kendaraan'] ?></td>
                         <td><?= rupiah($kndr['tarif_parkir']) ?></td>
                         <td>

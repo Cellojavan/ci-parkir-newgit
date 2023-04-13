@@ -4,7 +4,10 @@ class kendaraan_model extends CI_model{
 
     public function getKendaraan(){
 
-        return $query = $this->db->get("jenis_kendaraan")->result_array();
+        $this->db->select("*");
+        $this->db->from("jenis_kendaraan");
+        $this->db->join("lokasi", "lokasi.id_lokasi = jenis_kendaraan.lokasi_id", "left");
+        return $this->db->get()->result_array();
     }
 
     public function tambahKendaraan(){
