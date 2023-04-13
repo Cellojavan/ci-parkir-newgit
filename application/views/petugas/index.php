@@ -33,7 +33,15 @@
           <img src="dist/img/352174_user_icon.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
+        <?php if($this->session->userdata("hak_akses") == "admin") {?>
           <a href="#" class="d-block">Admin</a>
+          <?php } ?>
+          <?php if($this->session->userdata("hak_akses") == "petugas") {?>
+          <a href="#" class="d-block">Petugas</a>
+          <?php } ?>
+          <?php if($this->session->userdata("hak_akses") == "manager") {?>
+          <a href="#" class="d-block">Manager</a>
+          <?php } ?>
         </div>
       </div>
 

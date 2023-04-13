@@ -175,6 +175,14 @@
                   </button>
                 </div>
                 <?php endif ?>
+                <?php if($this->session->flashdata('login')) :?>
+                  <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <?= $this->session->flashdata('login');?>&nbsp<strong><?= $nama['nama_user']?></strong> 
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <?php endif ?>
               <a href="<?= base_url('')?>parkir/tambah" class="btn btn-primary mb-3 ">Tambah Parkir</a>
               <a href="<?= base_url('')?>login/logout" class="btn btn-danger mb-3 float-right ">Logout</a>
               <table class="table table-bordered">

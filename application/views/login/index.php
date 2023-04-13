@@ -6,7 +6,6 @@
   <!-- /.login-logo -->
   <div class="card" style="margin-bottom: 120px">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
                 <?php if($this->session->flashdata('flash')) :?>
                   <div class="alert alert-danger alert-dismissible fade show" role="alert">
                   <strong><?= $this->session->flashdata('flash');?></strong> 

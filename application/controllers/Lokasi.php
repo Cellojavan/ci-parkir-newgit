@@ -8,6 +8,13 @@ class Lokasi extends CI_Controller{
 
         $this->load->library('form_validation');
         $this->load->model('lokasi_model');
+
+        if($this->session->userdata("hak_akses") == "admin"){
+
+        }else{
+            $this->session->set_flashdata('flash', 'anda tidak memiliki akses');
+            redirect(base_url('login'));
+        }
     }
 
     public function index(){

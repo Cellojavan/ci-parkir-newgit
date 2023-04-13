@@ -7,6 +7,15 @@ class Petugas extends CI_Controller{
     
         $this->load->model('petugas_model');
         $this->load->library('form_validation');
+
+        if($this->session->userdata("hak_akses") == "admin"){
+            
+        }elseif($this->session->userdata("hak_akses") == "manager"){
+
+        }else{
+            $this->session->set_flashdata('flash', 'anda tidak memiliki akses');
+            redirect(base_url('login'));
+        }
     }
 
 
