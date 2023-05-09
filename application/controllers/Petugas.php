@@ -6,6 +6,7 @@ class Petugas extends CI_Controller{
         parent::__construct();
     
         $this->load->model('petugas_model');
+        $this->load->model('lokasi_model');
         $this->load->library('form_validation');
 
         if($this->session->userdata("hak_akses") == "admin"){
@@ -33,6 +34,7 @@ class Petugas extends CI_Controller{
     public function tambah(){
 
         $data['judul'] = "Tambah Data Petugas";
+        $data['lokasi'] = $this->lokasi_model->getAllLokasi();
         $this->form_validation->set_rules('namapetugas', 'Nama Petugas', 'required');
         $this->form_validation->set_rules('lokasiid', 'Lokasi Id', 'required|numeric');
         if($this->form_validation->run() == FALSE){
@@ -55,6 +57,7 @@ class Petugas extends CI_Controller{
         $data['judul'] = "Edit Petugas";
         $data['lokasi'] = ['1', '2'];
         $data['petugas'] = $this->petugas_model->getById($id);
+        $data['lokasi'] = $this->lokasi_model->getAllLokasi();
         $this->form_validation->set_rules('namapetugas', 'Nama Petugas', 'required');
         $this->form_validation->set_rules('lokasiid', 'Lokasi Id', 'required|numeric');
         if($this->form_validation->run() == FALSE ){

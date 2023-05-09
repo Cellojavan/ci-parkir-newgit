@@ -140,20 +140,18 @@
                 <?php endif ?>
                 <form action="" method="post">
                 <div class="form-group">
-                    <label for="lokasiid">Lokasi ID</label>
-                    <small  class="form-text text-muted">1 : Trenggalek</small>
-                    <small  class="form-text text-muted">2 : Sidoarjo</small>
-                    <select class="form-control" name="lokasiid" id="lokasiid">
-                        <?php foreach($lokasi as $lks) :?>
-                        <?php if($lks == $petugas['lokasi_id']) :?>
-                            <option value="<?= $lks?>"selected><?= $lks?></option>
-                        <?php else : ?>
-                            <option value="<?= $lks?>"><?= $lks?></option>
-                        <?php endif?>    
-                        <?php endforeach?>    
+                        <label for="lokasiid">Lokasi ID</label>
+                        <select class="form-control" name="lokasiid" id="lokasiid">
+                          <?php foreach($lokasi as $lks) :?>
+                            <?php if($lks['id_lokasi'] == $petugas['lokasi_id']) : ?>
+                              <option value="<?=$lks['id_lokasi']?>"selected><?= $lks['nama_lokasi'] ?></option>
+                            <?php else :?>
+                              <option value="<?=$lks['id_lokasi']?>"><?= $lks['nama_lokasi'] ?></option>
+                            <?php endif ?>  
+                          <?php endforeach ?> 
                         </select>
-                    <small class="form-text text-danger"><?= form_error('lokasiid'); ?></small>
-                </div>
+                        <small class="form-text text-danger"><?= form_error('lokasiid'); ?></small>
+                    </div>
                 <div class="form-group">
                         <label for="name">Name Petugas</label>
                         <input type="hidden" name="id" value="<?= $petugas['id_petugas']?>">

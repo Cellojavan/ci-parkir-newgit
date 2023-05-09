@@ -195,33 +195,32 @@
                         <small class="form-text text-danger"><?= form_error('tglout'); ?></small>
                     </div>
                     <div class="form-group">
-                        <label for="lokasiid">Lokasi ID</label>
-                        <small  class="form-text text-muted">1 : Farhan</small>
+                        <label for="lokasiid">Petugas ID</label>
                         <select class="form-control" name="petugasid" id="lokasiid">
-                            <option></option>
-                            <option>1</option>
+                        <option>--Pilih Lokasi--</option>
+                          <?php foreach($petugas as $ptgs) :?>
+                            <option value="<?=$ptgs['id_petugas']?>"><?= $ptgs['nama_petugas'] ?></option>
+                          <?php endforeach ?>  
                         </select>
                         <small class="form-text text-danger"><?= form_error('petugasid'); ?></small>
                     </div>
                     <div class="form-group">
                         <label for="lokasiid">Lokasi ID</label>
-                        <small  class="form-text text-muted">1 : Trenggalek</small>
-                        <small  class="form-text text-muted">2 : Sidoarjo</small>
                         <select class="form-control" name="lokasiid" id="lokasiid">
-                            <option></option>
-                            <option>1</option>
-                            <option>2</option>
+                        <option>--Pilih Lokasi--</option>
+                          <?php foreach($lokasi as $lks) :?>
+                            <option value="<?=$lks['id_lokasi']?>"><?= $lks['nama_lokasi'] ?></option>
+                          <?php endforeach ?> 
                         </select>
                         <small class="form-text text-danger"><?= form_error('lokasiid'); ?></small>
                     </div>
                     <div class="form-group">
-                        <label for="lokasiid">Lokasi ID</label>
-                        <small  class="form-text text-muted">1 : Sepeda</small>
-                        <small  class="form-text text-muted">2 : Mobil</small>
+                        <label for="lokasiid">Kendaraan ID</label>
                         <select class="form-control" name="jeniskendaraanid" id="lokasiid">
-                            <option></option>
-                            <option>1</option>
-                            <option>2</option>
+                        <option>--Pilih Lokasi--</option>
+                          <?php foreach($kendaraan as $kndr) :?>
+                            <option value="<?=$kndr['id_jenis_kendaraan']?>"><?= $kndr['jenis_kendaraan'] ?></option>
+                          <?php endforeach ?> 
                         </select>
                         <small class="form-text text-danger"><?= form_error('jeniskendaraanid'); ?></small>
                     </div>

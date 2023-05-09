@@ -196,47 +196,41 @@
                         <input type="date" class="form-control" id="tglout"  name="tglout" value="<?= $parkir['tgl_out']?>" placeholder="Enter Tgl Out" autocomplete="off">
                         <small class="form-text text-danger"><?= form_error('tglout'); ?></small>
                     </div>
+                  
                     <div class="form-group">
-                        <label for="lokasiid">Lokasi ID</label>
-                        <small  class="form-text text-muted">1 : Farhan</small>
+                        <label for="lokasiid">Petugas ID</label>
                         <select class="form-control" name="petugasid" id="lokasiid">
-                            <?php foreach($id as $i) :?>
-                            <?php if($i == $parkir['petugas_id'] ) : ?>
-                                <option value="<?= $i ?>"selected><?= $i ?></option>
-                            <?php else : ?>
-                                <option value="<?= $i ?>"><?= $i ?></option>
-                            <?php endif ?>    
-                            <?php endforeach ?>    
-                        </select>
-                        <small class="form-text text-danger"><?= form_error('petugasid'); ?></small>
-                    </div>
-                    <div class="form-group">
-                        <label for="lokasiid">Lokasi ID</label>
-                        <small  class="form-text text-muted">1 : Trenggalek</small>
-                        <small  class="form-text text-muted">2 : Sidoarjo</small>
-                        <select class="form-control" name="lokasiid" id="lokasiid">
-                            <?php foreach($id as $i) :?>
-                            <?php if($i == $parkir['lokasi_id'] ) : ?>
-                                <option value="<?= $i ?>"selected><?= $i ?></option>
-                            <?php else : ?>
-                                <option value="<?= $i ?>"><?= $i ?></option>
-                            <?php endif ?>    
-                            <?php endforeach ?> 
+                          <?php foreach($petugas as $ptgs) :?>
+                            <?php if($ptgs['id_petugas'] == $parkir['petugas_id']) : ?>
+                              <option value="<?=$ptgs['id_petugas']?>"selected><?= $ptgs['nama_petugas'] ?></option>
+                            <?php else :?>
+                              <option value="<?=$ptgs['id_petugas']?>"><?= $ptgs['nama_petugas'] ?></option>
+                            <?php endif ?>  
+                          <?php endforeach ?> 
                         </select>
                         <small class="form-text text-danger"><?= form_error('lokasiid'); ?></small>
                     </div>
                     <div class="form-group">
                         <label for="lokasiid">Lokasi ID</label>
+                        <select class="form-control" name="lokasiid" id="lokasiid">
+                          <?php foreach($lokasi as $lks) :?>
+                            <?php if($lks['id_lokasi'] == $parkir['lokasi_id']) : ?>
+                              <option value="<?=$lks['id_lokasi']?>"selected><?= $lks['nama_lokasi'] ?></option>
+                            <?php else :?>
+                              <option value="<?=$lks['id_lokasi']?>"><?= $lks['nama_lokasi'] ?></option>
+                            <?php endif ?>  
+                          <?php endforeach ?> 
+                        </select>
+                        <small class="form-text text-danger"><?= form_error('lokasiid'); ?></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="lokasiid">Kendaraan ID</label>
                         <small  class="form-text text-muted">1 : Sepeda</small>
                         <small  class="form-text text-muted">2 : Mobil</small>
                         <select class="form-control" name="jeniskendaraanid" id="lokasiid">
-                            <?php foreach($id as $i) :?>
-                            <?php if($i == $parkir['jenis_kendaraan_id'] ) : ?>
-                                <option value="<?= $i ?>"selected><?= $i ?></option>
-                            <?php else : ?>
-                                <option value="<?= $i ?>"><?= $i ?></option>
-                            <?php endif ?>    
-                            <?php endforeach ?> 
+                          <?php foreach($kendaraan as $kndr) :?>
+                            <option value="<?=$kndr['id_jenis_kendaraan']?>"><?= $kndr['jenis_kendaraan'] ?></option>
+                          <?php endforeach ?> 
                         </select>
                         <small class="form-text text-danger"><?= form_error('jeniskendaraanid'); ?></small>
                     </div>

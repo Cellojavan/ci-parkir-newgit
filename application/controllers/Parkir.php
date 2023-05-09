@@ -8,6 +8,9 @@ class Parkir extends CI_Controller{
 
         $this->load->library('form_validation');
         $this->load->model('parkir_model');
+        $this->load->model('petugas_model');
+        $this->load->model('lokasi_model');
+        $this->load->model('kendaraan_model');
         if($this->session->userdata("hak_akses") == "admin"){
             
         }elseif($this->session->userdata("hak_akses") == "manager"){
@@ -33,18 +36,21 @@ class Parkir extends CI_Controller{
     public function tambah(){
 
         $data['judul'] = "Halaman Tambah Parkir";
+        $data['petugas'] = $this->petugas_model->getPetugas();
+        $data['lokasi'] = $this->lokasi_model->getAllLokasi();
+        $data['kendaraan'] = $this->kendaraan_model->getKendaraan();
         $this->form_validation->set_rules('tglin', 'Tgl In', 'required');
         $this->form_validation->set_rules('tglout', 'Tgl Out', 'required');
-        $this->form_validation->set_rules('petugasid', 'Petugas ID', 'required|numeric');
-        $this->form_validation->set_rules('lokasiid', 'Lokasi ID', 'required|numeric');
-        $this->form_validation->set_rules('jeniskendaraanid', 'Kendaraan ID', 'required|numeric');
+        $this->form_validation->set_rules('petugasid', 'Petugas ID', 'required');
+        $this->form_validation->set_rules('lokasiid', 'Lokasi ID', 'required');
+        $this->form_validation->set_rules('jeniskendaraanid', 'Kendaraan ID', 'required');
         $this->form_validation->set_rules('nopolkendaraan', 'Nopol Kendaraan', 'required');
         $this->form_validation->set_rules('tarif', 'Tarif', 'required|numeric');
       
         if($this->form_validation->run() == FALSE){
 
             $this->load->view('templates/header2',$data);
-            $this->load->view('parkir/tambah');
+            $this->load->view('parkir/tambah',$data);
             $this->load->view('templates/footer2');
        
         }else{
@@ -60,7 +66,9 @@ class Parkir extends CI_Controller{
         $data['judul'] = "Halaman Tambah Parkir";
         $data['id'] = ['1', '2'];
         $data['parkir'] = $this->parkir_model->getById($id);
-
+        $data['petugas'] = $this->petugas_model->getPetugas();
+        $data['lokasi'] = $this->lokasi_model->getAllLokasi();
+        $data['kendaraan'] = $this->kendaraan_model->getKendaraan();
         $this->form_validation->set_rules('tglin', 'Tgl In', 'required');
         $this->form_validation->set_rules('tglout', 'Tgl Out', 'required');
         $this->form_validation->set_rules('petugasid', 'Petugas ID', 'required|numeric');

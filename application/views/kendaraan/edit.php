@@ -188,18 +188,15 @@
                 <form action="" method="post">
                 <div class="form-group">
                         <label for="lokasiid">Lokasi ID</label>
-                        <small  class="form-text text-muted">1 : Trenggalek</small>
-                        <small  class="form-text text-muted">2 : Sidoarjo</small>
                         <select class="form-control" name="lokasiid" id="lokasiid">
-                            <?php foreach($lokasi as $lks): ?>
-                            <?php if($lks == $kendaraan['lokasi_id']):?>
-                                <option value="<?= $lks; ?>"selected><?= $lks; ?></option>
+                          <?php foreach($lokasi as $lks) :?>
+                            <?php if($lks['id_lokasi'] == $kendaraan['lokasi_id']) : ?>
+                              <option value="<?=$lks['id_lokasi']?>"selected><?= $lks['nama_lokasi'] ?></option>
                             <?php else :?>
-                                <option value="<?= $lks; ?>"><?= $lks; ?></option>
-                            <?php endif; ?>
-                            <?php endforeach; ?>
+                              <option value="<?=$lks['id_lokasi']?>"><?= $lks['nama_lokasi'] ?></option>
+                            <?php endif ?>  
+                          <?php endforeach ?> 
                         </select>
-                        <input type="hidden" name="id"  value ="<?= $kendaraan['id_jenis_kendaraan']?>">           
                         <small class="form-text text-danger"><?= form_error('lokasiid'); ?></small>
                     </div>
 
