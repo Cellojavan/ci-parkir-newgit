@@ -55,9 +55,19 @@ class Parkir extends CI_Controller{
        
         }else{
 
-            $this->parkir_model->tambahParkir();
-            $this->session->set_flashdata('flash', 'Ditambahkan');
-            redirect(base_url('parkir'));
+            $query = $this->parkir_model->cekPetugas();
+            if($query->num_rows() == 1 ){
+
+                $this->session->set_flashdata('cek', 'Terdaftar');
+                redirect(base_url('parkir/tambah'));
+
+            }else{
+
+                $this->parkir_model->tambahParkir();
+                $this->session->set_flashdata('flash', 'Ditambahkan');
+                redirect(base_url('parkir'));
+            }
+
         }
     }    
 
@@ -84,10 +94,22 @@ class Parkir extends CI_Controller{
             $this->load->view('templates/footer2');
            
         }else{
+
+            $query = $this->parkir_model->cekPetugas();
+            if($query->num_rows() == 1 ){
+
+                $this->session->set_flashdata('cek', 'Terdaftar');
+                redirect(base_url('parkir/edit/'.$id));
+
+            }else{
+
+                $this->parkir_model->editParkir();
+                $this->session->set_flashdata('flash', 'Diubah');
+                redirect(base_url('parkir'));
+
+            }
+            
     
-            $this->parkir_model->editParkir();
-            $this->session->set_flashdata('flash', 'Diubah');
-            redirect(base_url('parkir'));
         }
     }
 
@@ -95,9 +117,16 @@ class Parkir extends CI_Controller{
 
         $this->db->where('id_parkir', $id);
         $this->db->delete('parkir');
+        $error = $this->db->error();
 
-        $this->session->set_flashdata('flash', 'Dihapus');
-        redirect(base_url('parkir'));
+        if($error['code'] != 0){
+            $this->session->set_flashdata('error', 'Data tidak dapat dihapus (Sudah Berelasi)');
+            redirect(base_url('parkir'));
+        }else{
+            
+            $this->session->set_flashdata("flash", "Dihapus");
+            redirect(base_url('parkir'));
+        }
     }
 
 

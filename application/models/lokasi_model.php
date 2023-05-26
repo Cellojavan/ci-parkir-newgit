@@ -23,6 +23,21 @@ class lokasi_model extends CI_model{
         return $this->db->get_where('lokasi', ["id_lokasi" => $id])->row_array();
     }
 
+    
+    public function cekLokasi(){
+
+        $data = [
+
+            "nama_lokasi" => $this->input->post("namelokasi"),
+        ];
+
+        $this->db->select("*");
+        $this->db->from("lokasi");
+        $this->db->where($data);
+        $this->db->limit("1");
+        return $this->db->get();
+    }
+
     public function editLokasi(){
 
         $data=[

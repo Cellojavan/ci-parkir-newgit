@@ -37,10 +37,20 @@ class Lokasi extends CI_Controller{
             $this->load->view('lokasi/tambah');
             $this->load->view('templates/footer2');
         }else{
+            $query = $this->lokasi_model->cekLokasi();
+            if($query->num_rows() == 1 ){
 
-            $this->lokasi_model->tambahLokasi();
-            $this->session->set_flashdata('flash', 'Ditambahkan');
-            redirect(base_url('lokasi'));
+                $this->session->set_flashdata('cek', 'Digunakan');
+                redirect(base_url('lokasi/tambah'));
+
+            }else{
+                
+                $this->lokasi_model->tambahLokasi();
+                $this->session->set_flashdata('flash', 'Ditambahkan');
+                redirect(base_url('lokasi'));
+           
+            }
+
         }
     }
 
@@ -56,9 +66,21 @@ class Lokasi extends CI_Controller{
             $this->load->view('templates/footer2');
         }else{
 
-            $this->lokasi_model->editLokasi();
-            $this->session->set_flashdata('flash', 'Diubah');
-            redirect(base_url('lokasi'));
+            $query = $this->lokasi_model->cekLokasi();
+            if($query->num_rows() == 1 ){
+
+                $this->session->set_flashdata('cek', 'Digunakan');
+                redirect(base_url('lokasi/edit/'.$id));
+
+            }else{
+
+                $this->lokasi_model->editLokasi();
+                $this->session->set_flashdata('flash', 'Diubah');
+                redirect(base_url('lokasi'));
+
+            }
+
+           
         }
     }
 
@@ -66,9 +88,15 @@ class Lokasi extends CI_Controller{
 
         $this->db->where("id_lokasi", $id);
         $this->db->delete('lokasi');
-
-        $this->session->set_flashdata("flash", "Dihapus");
-        redirect(base_url('lokasi'));
+        $error = $this->db->error();
+        if($error['code'] != 0){
+            $this->session->set_flashdata('error', 'Data tidak dapat dihapus (Sudah Berelasi)');
+            redirect(base_url('lokasi'));
+        }else{
+            
+            $this->session->set_flashdata("flash", "Dihapus");
+            redirect(base_url('lokasi'));
+        }
     }
 
 }

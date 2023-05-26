@@ -78,9 +78,16 @@ class Petugas extends CI_Controller{
 
         $this->db->where('id_petugas', $id);
         $this->db->delete("petugas");
+        $error = $this->db->error();
 
-        $this->session->set_flashdata('flash', 'Dihapus');
-        redirect(base_url('petugas'));
+        if($error['code'] != 0){
+            $this->session->set_flashdata('error', 'Data tidak dapat dihapus (Sudah Berelasi)');
+            redirect(base_url('petugas'));
+        }else{
+            
+            $this->session->set_flashdata("flash", "Dihapus");
+            redirect(base_url('petugas'));
+        }
     }
 }
 

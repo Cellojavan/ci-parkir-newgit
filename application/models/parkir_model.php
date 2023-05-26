@@ -29,6 +29,19 @@ class parkir_model extends CI_model{
 
         $this->db->insert("parkir", $data);
     }
+    public function cekPetugas(){
+
+        $data = [
+
+            "petugas_id" => $this->input->post("petugasid"),
+        ];
+
+        $this->db->select("*");
+        $this->db->from("parkir");
+        $this->db->where($data);
+        $this->db->limit("1");
+        return $this->db->get();
+    }
 
     public function getById($id){
 

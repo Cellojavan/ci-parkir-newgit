@@ -43,10 +43,20 @@ class User extends CI_Controller {
             $this->load->view('templates/footer2');
         
         }else{
+            
+            $query = $this->user_model->cekUser();
+            if($query->num_rows() == 1 ){
 
-            $this->user_model->tambahUser();
-            $this->session->set_flashdata('flash', 'Ditambahkan');
-            redirect(base_url());
+                $this->session->set_flashdata('cek', 'Digunakan');
+                redirect(base_url('user/tambah'));
+
+            }else{
+
+                $this->user_model->tambahUser();
+                $this->session->set_flashdata('flash', 'Ditambahkan');
+                redirect(base_url());
+
+            }
         }
 
     }
@@ -71,9 +81,18 @@ class User extends CI_Controller {
         
         }else{
 
-            $this->user_model->ubahUser();
-            $this->session->set_flashdata('flash', 'Diubah');
-            redirect(base_url());
+            $query = $this->user_model->cekUser();
+            if($query->num_rows() == 1 ){
+
+                $this->session->set_flashdata('cek', 'Digunakan');
+                redirect(base_url('user/edit/'.$id));
+
+            }else{
+
+                $this->user_model->ubahUser();
+                $this->session->set_flashdata('flash', 'Diubah');
+                redirect(base_url());
+            }
         }
 
     }
@@ -82,8 +101,11 @@ class User extends CI_Controller {
 
         $this->db->where('id_user', $id);
         $this->db->delete('user');
-        $this->session->set_flashdata('flash', 'Dihapus');
-        redirect(base_url());
+        $eror = $this->db->error();
+       
+
+            $this->session->set_flashdata('flash', 'Dihapus');
+            redirect(base_url());
     }
 
 

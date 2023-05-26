@@ -78,8 +78,15 @@ class Kendaraan extends CI_Controller{
 
         $this->db->where('id_jenis_kendaraan', $id);
         $this->db->delete("jenis_kendaraan");
-        $this->session->set_flashdata('flash', "Didelete");
-        redirect(base_url('kendaraan'));
+        $error = $this->db->error();
+        if($error['code'] != 0){
+            $this->session->set_flashdata('error', 'Data tidak dapat dihapus (Sudah Berelasi)');
+            redirect(base_url('kendaraan'));
+        }else{
+            
+            $this->session->set_flashdata('flash', "Didelete");
+            redirect(base_url('kendaraan'));
+        }
     }
 }
 

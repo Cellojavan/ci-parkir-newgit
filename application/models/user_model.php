@@ -23,6 +23,33 @@ class user_model extends CI_model {
 
     }
 
+    public function cekUser(){
+
+        $data = [
+
+            "username" => $this->input->post("username"),
+        ];
+
+        $this->db->select("*");
+        $this->db->from("user");
+        $this->db->where($data);
+        $this->db->limit("1");
+        return $this->db->get();
+    }
+    public function cekUserr(){
+
+        $data = [
+
+            "username" => $this->input->post("username"),
+        ];
+
+        $this->db->select("*");
+        $this->db->from("user");
+        $this->db->where($data);
+        $this->db->limit("1");
+        return $this->db->get();
+    }
+
     public function getById($id){
 
         return $this->db->get_where('user', ["id_user" => $id])->row_array();
