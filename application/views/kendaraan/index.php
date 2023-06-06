@@ -3,6 +3,14 @@
     </div>
     <!-- /.sidebar -->
   </aside>
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+              <a href="<?= base_url('')?>login/logout" class="btn btn-danger  float-right ">Logout</a>
+              </li>
+            </ul>
+  </nav>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -13,7 +21,6 @@
           <div class="col-sm-6">
           </div><!-- /.col -->
           <div class="col-sm-6">
-          <a href="<?= base_url('')?>login/logout" class="btn btn-danger mb-3 float-right ">Logout</a>
 
             <ol class="breadcrumb float-sm-right">
             </ol>
@@ -72,7 +79,7 @@
                 <tbody>
                     <?php
                     function rupiah($angka){
-                        $duit = "Rp" . number_format($angka, '2', ',', '.');
+                        $duit = "Rp" . number_format($angka, '0', '', '.');
                         return $duit;
 
                     }

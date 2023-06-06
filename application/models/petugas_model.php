@@ -10,6 +10,13 @@ class petugas_model extends CI_model{
         $this->db->join("lokasi", "lokasi.id_lokasi = petugas.lokasi_id", "left");
         return $this->db->get()->result_array();
     }
+    public function tampilPetugas(){
+        $keywoard = 'petugas';
+        $this->db->select("*");
+        $this->db->from("user");
+        $this->db->like("hak_akses",$keywoard);
+        return $this->db->get()->result_array();
+    }
 
     public function tambahPetugas(){
 

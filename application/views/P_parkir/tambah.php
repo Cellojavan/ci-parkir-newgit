@@ -90,11 +90,11 @@ $this->load->view('templates/header2',$judul);
                 </div>
                 <?php endif ?>
 
-				
+				<?php date_default_timezone_set("Asia/Jakarta"); ?>
                 <form action="<?= base_url('P_parkir/tambah')?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="datein">Tanggal Masuk</label>
-                        <input type="date" class="form-control" id="datein"  name="tglin"  autocomplete="off">
+                        <input type="text" value="<?= date('Y-m-d H.i.s')?>" class="form-control" id="datein"  name="tglin"  autocomplete="off" readonly>
                         <small class="form-text text-danger"><?= form_error('tglin'); ?></small>
                     </div>
 						<div class="box">
@@ -118,8 +118,29 @@ $this->load->view('templates/header2',$judul);
 						
 						<div class="form-group">
 							<label for="nopol">Nopol</label>
-							<input type="text" class="form-control" id="nopol"  name="nopol" placeholder="Enter Name Nopol" autocomplete="off">
+							<input type="text" class="form-control" id="nopol"   name="nopol" placeholder="Enter Name Nopol" autocomplete="off">
 							<small class="form-text text-danger"><?= form_error('nopol'); ?></small>
+                    	</div>
+						<div class="form-group">
+                        <label for="datein">Lokasi</label>
+                        <input type="text" value="<?= $lokasi['nama_lokasi']?>" class="form-control" id="datein"  name="lokasiid"  autocomplete="off" readonly>
+                    	</div>
+						<div class="form-group">
+                        <label for="lokasiid">Kendaraan </label>
+                        <select class="form-control" name="nim" id="nim" onchange="isi_otomatis()">
+                        <option>--Pilih Kendaraan--</option>
+                          <?php foreach($kendaraan as $kndr) :?>
+                            <option value="<?=$kndr['id_jenis_kendaraan']?>"  ><?= $kndr['jenis_kendaraan'] ?></option>
+                          <?php endforeach ?> 
+                        </select>
+						<div class="form-group">
+							<label for="tarif">Tarif</label>
+							<input type="text" value="<?=$this->input->get('nim')?>" class="form-control" id="tarif"  name="tarif">
+							<small class="form-text text-danger"><?= form_error('tarif'); ?></small>
+                    	</div>
+
+                        </select>
+                        <small class="form-text text-danger"><?= form_error('jeniskendaraanid'); ?></small>
                     	</div>
 						<button class="btn btn-primary" name="tambah" type="submit">TAMBAH</button>
                    		<button class="btn btn-warning" type="reset">RESET</button>
@@ -161,8 +182,25 @@ $this->load->view('templates/header2',$judul);
   <!-- Control Sidebar -->
   
   <!-- /.control-sidebar -->
+  
 
   <!-- Main Footer -->
+<script src="<?=base_url()?>assets/js/jquery-3.7.0.js"></script>
+<script type="text/javascript">
+            function isi_otomatis(){
+                var nim = $("#nim").val();
+				$.ajax({
+					url : "<?= base_url()?>P_parkir/autofill",
+					data : 'nim='+nim,
+				}).success(function(data){
+					//alert('ambatukam');
+					var json = data,
+                    obj = JSON.parse(json);
+                    $('#tarif').val(obj.tarif);
+				});
+            }
+</script>
+
 <?php
 	$this->load->view('templates/footer2');
 ?>

@@ -82,7 +82,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
          </a>       
      </li>
     <li class="nav-item">
-         <a href="<?= base_url()?>parkir" <?=$this->uri->segment(1) == 'parkir' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+         <a href="<?= base_url()?>P_parkir" <?=$this->uri->segment(1) == 'P_parkir' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
          <i class="fas fa-parking">&nbsp&nbsp</i>
          <p>
              Parkir
@@ -116,7 +116,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
          </a>       
      </li>
     <li class="nav-item">
-         <a href="<?= base_url()?>parkir" <?=$this->uri->segment(1) == 'parkir' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+         <a href="<?= base_url()?>P_parkir" <?=$this->uri->segment(1) == 'parkir' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
          <i class="fas fa-parking">&nbsp&nbsp</i>
          <p>
              Parkir
@@ -134,7 +134,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
    <?php } ?>
    <?php if($this->session->userdata("hak_akses") == "petugas") { ?>
      <li class="nav-item">
-         <a href="<?= base_url()?>parkir" <?=$this->uri->segment(1) == 'petugas' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+         <a href="<?= base_url()?>P_parkir" <?=$this->uri->segment(1) == 'petugas' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
          <i class="fas fa-parking">&nbsp&nbsp</i>
          <p>
              Parkir

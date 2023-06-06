@@ -21,6 +21,7 @@ class Login extends CI_Controller{
 
         $username = $this->input->post('username');
         $password = $this->input->post('password');
+        $password = md5($password);
         $cek = $this->login_model->cek($username);
 
         $login = $this->login_model->cekSession($username,$password);
@@ -28,7 +29,8 @@ class Login extends CI_Controller{
         if($login->num_rows() == 1){
             foreach($login->result_array() as $row){
                 $data =[
-                    "hak_akses" => $row["hak_akses"]
+                    "hak_akses" => $row["hak_akses"],
+                    "nama_user" => $row["nama_user"]
                 ];
                 $this->session->set_userdata($data);
                 if($this->session->userdata("hak_akses") == "admin"){

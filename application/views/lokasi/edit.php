@@ -46,6 +46,14 @@
                   </button>
                 </div>
                 <?php endif ?>
+                <?php if($this->session->flashdata('cek')) :?>
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  Lokasi sudah <strong><?= $this->session->flashdata('cek');?></strong> 
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <?php endif ?>
                 <form action="" method="post">
                 <div class="form-group">
                         <label for="name">Name</label>

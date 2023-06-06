@@ -60,10 +60,17 @@
             <input type="text" class="form-control" id="username"  name="username" value="<?= $user['username']?>" placeholder="Enter Username" autocomplete="off">
             <small class="form-text text-danger"><?= form_error('username'); ?></small>
         </div>
-       <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password"  name="password" value="<?= $user['password']?>" placeholder="Enter Password" autocomplete="off">
-            <small class="form-text text-danger"><?= form_error('password'); ?></small>
+        <label for="">Password</label>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" value="<?= $user['password']?>" name="password" placeholder="Password" autocomplete="off" id="pass">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <a href="#" class="text-dark" id="icon-click">
+                <i class="fas fa-eye" id="icon"></i>
+              </a>
+            </div>
+          </div>
+          <small class="form-text text-danger"><?= form_error('password'); ?></small>
         </div>
        <div class="form-group">
             <label for="email">Email</label>
@@ -116,3 +123,25 @@
   <!-- /.control-sidebar -->
 
   <!-- Main Footer -->
+  <script
+  src="https://code.jquery.com/jquery-3.6.4.min.js"
+  integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+  crossorigin="anonymous">
+</script>
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $("#icon-click").click(function(){
+      $("#icon").toggleClass("fa-eye-slash");
+
+      var input = $("#pass");
+      if(input.attr("type")==="password"){
+        input.attr("type","text");
+      }
+      else{
+        input.attr("type","password");
+      }
+
+    });
+  });
+</script>

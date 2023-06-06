@@ -95,19 +95,10 @@ class Parkir extends CI_Controller{
            
         }else{
 
-            $query = $this->parkir_model->cekPetugas();
-            if($query->num_rows() == 1 ){
-
-                $this->session->set_flashdata('cek', 'Terdaftar');
-                redirect(base_url('parkir/edit/'.$id));
-
-            }else{
-
                 $this->parkir_model->editParkir();
                 $this->session->set_flashdata('flash', 'Diubah');
                 redirect(base_url('parkir'));
 
-            }
             
     
         }

@@ -51,8 +51,13 @@
                         <small class="form-text text-danger"><?= form_error('lokasiid'); ?></small>
                     </div>
                 <div class="form-group">
-                        <label for="name">Name Petugas</label>
-                        <input type="text" class="form-control" id="name"  name="namapetugas" placeholder="Enter Name Petugas" autocomplete="off">
+                        <label for="name">Lokasi</label>
+                        <select class="form-control" name="namapetugas" id="name">
+                          <option>--Pilih Petugas--</option>
+                          <?php foreach($petugas as $ptgs) : ?>
+                            <option><?=$ptgs['nama_user']?></option>
+                          <?php endforeach ?>  
+                        </select>
                         <small class="form-text text-danger"><?= form_error('namepetugas'); ?></small>
                     </div>
                     <button class="btn btn-primary" type="submit">TAMBAH</button>

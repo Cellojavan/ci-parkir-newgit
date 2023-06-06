@@ -20,8 +20,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Theme style -->
   <link rel="stylesheet" href="<?= base_url()?>/dist/css/adminlte.min.css">
   <!-- DataTables -->
-	<link rel="stylesheet" href="<?php echo base_url().'assets/plugins/datatables/dataTables.bootstrap.css'?>">
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/plugins/toast/jquery.toast.min.css'?>"/>
+	<link rel="stylesheet" href="<?php echo base_url().'plugins/datatables/dataTables.bootstrap.css'?>">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url().'plugins/toast/jquery.toast.min.css'?>"/>
 
   
   <style>
@@ -173,7 +173,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
          </a>       
      </li>
     <li class="nav-item">
-         <a href="<?= base_url()?>parkir" class="nav-link">
+         <a href="<?= base_url()?>P_parkir" class="nav-link">
          <i class="fas fa-parking">&nbsp&nbsp</i>
          <p>
              Parkir
@@ -207,7 +207,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
          </a>       
      </li>
     <li class="nav-item">
-         <a href="<?= base_url()?>parkir" class="nav-link">
+         <a href="<?= base_url()?>P_parkir" class="nav-link">
          <i class="fas fa-parking">&nbsp&nbsp</i>
          <p>
              Parkir
@@ -225,7 +225,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
    <?php } ?>
    <?php if($this->session->userdata("hak_akses") == "petugas") { ?>
      <li class="nav-item">
-         <a href="<?= base_url()?>parkir" class="nav-link">
+         <a href="<?= base_url()?>P_parkir" class="nav-link">
          <i class="fas fa-parking">&nbsp&nbsp</i>
          <p>
              Parkir

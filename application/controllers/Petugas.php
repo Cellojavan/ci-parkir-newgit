@@ -35,10 +35,11 @@ class Petugas extends CI_Controller{
 
         $data['judul'] = "Tambah Data Petugas";
         $data['lokasi'] = $this->lokasi_model->getAllLokasi();
+        $data['petugas'] = $this->petugas_model->tampilPetugas();
         $this->form_validation->set_rules('namapetugas', 'Nama Petugas', 'required');
         $this->form_validation->set_rules('lokasiid', 'Lokasi Id', 'required|numeric');
         if($this->form_validation->run() == FALSE){
-
+            
             $this->load->view('templates/header2',$data);
             $this->load->view('petugas/tambah',$data);
             $this->load->view('templates/footer2');

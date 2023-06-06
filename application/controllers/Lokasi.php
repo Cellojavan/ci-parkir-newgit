@@ -58,6 +58,8 @@ class Lokasi extends CI_Controller{
 
         $data['judul'] = "Halaman Edit";
         $data['lokasi'] = $this->lokasi_model->getById($id);
+        $idk = $this->input->post('id');
+        $user = $this->input->post('namelokasi');
         $this->form_validation->set_rules('namelokasi', 'Nama Lokasi', 'required');
         if ($this->form_validation->run()== FALSE){
 
@@ -68,13 +70,24 @@ class Lokasi extends CI_Controller{
 
             $query = $this->lokasi_model->cekLokasi();
             if($query->num_rows() == 1 ){
+                $cek = $this->lokasi_model->getByIdk($idk);
+                if($cek['nama_lokasi'] == $user){
 
-                $this->session->set_flashdata('cek', 'Digunakan');
-                redirect(base_url('lokasi/edit/'.$id));
+                    $this->lokasi_model->editLokasi($idk,$user);
+                    $this->session->set_flashdata('flash', 'Diubah');
+                    redirect(base_url('lokasi'));
+             
+                    
+                }else{
+              
+                    $this->session->set_flashdata('cek', 'Digunakan');
+                    redirect(base_url('lokasi/edit/'.$id));
+              
+                }
 
             }else{
 
-                $this->lokasi_model->editLokasi();
+                $this->lokasi_model->editLokasi($idk,$user);
                 $this->session->set_flashdata('flash', 'Diubah');
                 redirect(base_url('lokasi'));
 

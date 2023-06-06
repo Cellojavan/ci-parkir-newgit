@@ -78,7 +78,7 @@
                         <td><?= $i++;?></td>
                         <td><?= $us['nama_user'] ?></td>
                         <td><?= $us['username'] ?></td>
-                        <td><?= md5($us['password']) ?></td>
+                        <td><?= $us['password'] ?></td>
                         <td><?= $us['email'] ?></td>
                         <td><?= $us['no_wa'] ?></td>
                         <td><?= $us['hak_akses'] ?></td>

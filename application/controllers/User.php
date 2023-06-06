@@ -66,6 +66,8 @@ class User extends CI_Controller {
         $data['judul'] = 'Halaman edit';
         $data['user'] = $this->user_model->getById($id);
         $data['akses'] = ['admin', 'petugas', 'manager'];
+        $idk = $this->input->post('id');
+        $user = $this->input->post('username');
         $this->form_validation->set_rules('name', 'Name', 'required');
         $this->form_validation->set_rules('username', 'Username', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');
@@ -83,13 +85,24 @@ class User extends CI_Controller {
 
             $query = $this->user_model->cekUser();
             if($query->num_rows() == 1 ){
+                $cek = $this->user_model->getByIdk($idk);
+                if($cek['username'] == $user){
 
-                $this->session->set_flashdata('cek', 'Digunakan');
-                redirect(base_url('user/edit/'.$id));
+                    $this->user_model->ubahUser($idk,$user);
+                    $this->session->set_flashdata('flash', 'Diubah');
+                    redirect(base_url());
+             
+                }else{
+              
+                    $this->session->set_flashdata('cek', 'Digunakan');
+                    redirect(base_url('user/edit/'.$id));
+              
+                }
+                
 
             }else{
 
-                $this->user_model->ubahUser();
+                $this->user_model->ubahUser($idk,$user);
                 $this->session->set_flashdata('flash', 'Diubah');
                 redirect(base_url());
             }
