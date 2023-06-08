@@ -48,7 +48,7 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-success">
                     <div class="inner">
-                      p
+                      pp
                         <h3></h3>
                         <p>Transaksi Hari ini</p>
                     </div>
