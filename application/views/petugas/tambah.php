@@ -51,7 +51,7 @@
                         <small class="form-text text-danger"><?= form_error('lokasiid'); ?></small>
                     </div>
                 <div class="form-group">
-                        <label for="name">Lokasi</label>
+                        <label for="name">Petugas</label>
                         <select class="form-control" name="namapetugas" id="name">
                           <option>--Pilih Petugas--</option>
                           <?php foreach($petugas as $ptgs) : ?>

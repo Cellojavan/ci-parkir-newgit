@@ -59,19 +59,45 @@ class Petugas extends CI_Controller{
         $data['lokasi'] = ['1', '2'];
         $data['petugas'] = $this->petugas_model->getById($id);
         $data['lokasi'] = $this->lokasi_model->getAllLokasi();
+        $data['hooh'] = $this->petugas_model->tampilPetugas();
+        $lokasi = $this->input->post('lokasiid');
+        $idk = $this->input->post('id');
+        $nama = $this->input->post('namapetugas');
         $this->form_validation->set_rules('namapetugas', 'Nama Petugas', 'required');
         $this->form_validation->set_rules('lokasiid', 'Lokasi Id', 'required|numeric');
         if($this->form_validation->run() == FALSE ){
-              
+            
             $this->load->view('templates/header2',$data);
             $this->load->view('petugas/edit',$data);
             $this->load->view('templates/footer2');
+            
 
         }else{
 
-            $this->petugas_model->editPetugas();
-            $this->session->set_flashdata('flash', 'Diubah');
-            redirect(base_url('petugas'));
+            
+            $query = $this->petugas_model->cekName($nama);
+            if($query->num_rows() == 1 ){
+                $cek = $this->petugas_model->getByIdk($idk);
+                if($cek['nama_petugas'] == $nama){
+                    if($cek['lokasi_id'] == $lokasi){
+                        $this->petugas_model->editPetugas($lokasi,$idk,$nama);
+                        $this->session->set_flashdata('flash', 'Diubah');
+                        redirect(base_url('petugas'));
+                    }else{
+                        $this->session->set_flashdata('cek', 'Lokasi sudah ');
+                        redirect(base_url('petugas/edit/'.$id));
+                    }
+                }else{
+                    $this->session->set_flashdata('cek', 'Petugas sudah ');
+                    redirect(base_url('petugas/edit/'.$id)); 
+                }
+                
+            }else{
+
+                $this->petugas_model->editPetugas($lokasi,$idk,$nama);
+                $this->session->set_flashdata('flash', 'Diubah');
+                redirect(base_url('petugas'));
+            }
         }
     }
 

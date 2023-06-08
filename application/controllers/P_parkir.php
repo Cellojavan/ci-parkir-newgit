@@ -24,11 +24,46 @@ class P_parkir extends CI_Controller{
 
     public function index(){
 
-        $data['parkir'] = $this->P_parkir_model->GetAllParkir();
-        $data['judul'] = 'Pengelolaan Parkir';
+        if($this->session->userdata("hak_akses") == "petugas"){
+            $cariname = $this->P_parkir_model->getByName();
+            $hasil = $cariname['lokasi_id'];
+            $data['parkir'] = $this->P_parkir_model->get_lokasi($hasil);
+            $data['judul'] = 'Pengelolaan Parkir';
         $dari = $this->input->post('dari');
         $keywoard = $this->input->post('keyword');
         $ke = $this->input->post('ke');
+        
+        
+        if($this->input->post('submit')){
+            $data['parkir'] = $this->P_parkir_model->get_ketik($keywoard,$hasil);
+            $this->load->view('templates/header',$data);
+            $this->load->view('P_parkir/index',$data);
+            $this->load->view('templates/footer',$data);
+            
+        }else{
+            
+            if($this->input->post('cari')){
+
+                $data['parkir'] = $this->P_parkir_model->get_keywoard($ke,$dari,$hasil);
+                $this->load->view('templates/header',$data);
+                $this->load->view('P_parkir/index',$data);
+                $this->load->view('templates/footer',$data);
+
+            }else{
+                $this->load->view('templates/header',$data);
+                $this->load->view('P_parkir/index',$data);
+                $this->load->view('templates/footer',$data);
+            }
+            
+
+        }
+        }else{
+
+            $data['parkir'] = $this->P_parkir_model->GetAllParkir();
+            $data['judul'] = 'Pengelolaan Parkir';
+            $dari = $this->input->post('dari');
+            $keywoard = $this->input->post('keyword');
+            $ke = $this->input->post('ke');
         
         
         if($this->input->post('submit')){
@@ -54,6 +89,9 @@ class P_parkir extends CI_Controller{
             
 
         }
+
+        }
+        
 
     }
 

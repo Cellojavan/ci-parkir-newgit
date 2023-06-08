@@ -67,24 +67,35 @@ class P_parkir_model extends CI_model{
         $this->db->update("pengelolaan_parkir", $data);
     }
 
-    public function get_keywoard($dari,$ke){
+    public function get_keywoard($dari,$ke,$hasil){
 
         $this->db->select("*");
         $this->db->from("pengelolaan_parkir");
         $this->db->join("jenis_kendaraan", "jenis_kendaraan.id_jenis_kendaraan = pengelolaan_parkir.jenis_kendaraan_id", "left");
         $this->db->join("lokasi", "lokasi.id_lokasi = pengelolaan_parkir.lokasi_id", "left");
+        $this->db->where("id_lokasi",$hasil);
         $this->db->like("tgl_in",$dari);
         $this->db->or_like("tgl_in",$ke);
         return $this->db->get()->result_array();
     
     }
-    public function get_ketik($keywoard){
+    public function get_ketik($keywoard,$hasil){
 
         $this->db->select("*");
         $this->db->from("pengelolaan_parkir");
         $this->db->join("jenis_kendaraan", "jenis_kendaraan.id_jenis_kendaraan = pengelolaan_parkir.jenis_kendaraan_id", "left");
         $this->db->join("lokasi", "lokasi.id_lokasi = pengelolaan_parkir.lokasi_id", "left");
+        $this->db->where("id_lokasi",$hasil);
         $this->db->like("nopol",$keywoard);
+        return $this->db->get()->result_array();
+    
+    }
+    public function get_lokasi($hasil){
+        $this->db->select("*");
+        $this->db->from("pengelolaan_parkir");
+        $this->db->join("jenis_kendaraan", "jenis_kendaraan.id_jenis_kendaraan = pengelolaan_parkir.jenis_kendaraan_id", "left");
+        $this->db->join("lokasi", "lokasi.id_lokasi = pengelolaan_parkir.lokasi_id", "left");
+        $this->db->like("id_lokasi",$hasil);
         return $this->db->get()->result_array();
     
     }

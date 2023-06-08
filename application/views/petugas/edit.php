@@ -39,6 +39,22 @@
                   </button>
                 </div>
                 <?php endif ?>
+                <?php if($this->session->flashdata('cek')) :?>
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <?= $this->session->flashdata('cek');?><strong>Digunakan</strong> 
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <?php endif ?>
+                <?php if($this->session->flashdata('cekk')) :?>
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <?= $this->session->flashdata('cekk');?><strong>Digunakan</strong> 
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <?php endif ?>
                 <form action="" method="post">
                 <div class="form-group">
                         <label for="lokasiid">Lokasi</label>
@@ -54,10 +70,18 @@
                         <small class="form-text text-danger"><?= form_error('lokasiid'); ?></small>
                     </div>
                 <div class="form-group">
-                        <label for="name">Name Petugas</label>
+                        <label for="lokasiid">Petugas</label>
                         <input type="hidden" name="id" value="<?= $petugas['id_petugas']?>">
-                        <input type="text" class="form-control" id="name"  name="namapetugas" value="<?= $petugas['nama_petugas']?>" placeholder="Enter Name" autocomplete="off">
-                        <small class="form-text text-danger"><?= form_error('namapetugas'); ?></small>
+                        <select class="form-control" name="namapetugas" id="lokasiid">
+                          <?php foreach($hooh as $hh) :?>
+                            <?php if($hh['nama_user'] == $petugas['nama_petugas']) : ?>
+                              <option selected><?= $hh['nama_user'] ?></option>
+                            <?php else :?>
+                              <option ><?= $hh['nama_user'] ?></option>
+                            <?php endif ?>  
+                          <?php endforeach ?> 
+                        </select>
+                        <small class="form-text text-danger"><?= form_error('lokasiid'); ?></small>
                     </div>
                     <button class="btn btn-success" type="submit">UBAH</button>
                     <button class="btn btn-warning" type="reset">RESET</button>
