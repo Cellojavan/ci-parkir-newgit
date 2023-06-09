@@ -122,6 +122,11 @@ $this->load->view('templates/header2',$judul);
 							<small class="form-text text-danger"><?= form_error('nopol'); ?></small>
                     	</div>
 						<div class="form-group">
+							<label for="petugas">Petugas In</label>
+							<input type="text" class="form-control" id="petugas"   name="petugasin" value="<?= $this->session->userdata("nama_user");?>" autocomplete="off" readonly>
+							<small class="form-text text-danger"><?= form_error('petugasin'); ?></small>
+                    	</div>
+						<div class="form-group">
                         <label for="datein">Lokasi</label>
                         <input type="text" value="<?= $lokasi['nama_lokasi']?>" class="form-control" id="datein"  name="lokasiid"  autocomplete="off" readonly>
                     	</div>

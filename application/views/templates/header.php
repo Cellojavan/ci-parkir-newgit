@@ -66,7 +66,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                <?php if($this->session->userdata("hak_akses") == "admin") { ?>
 		
     <li class="nav-item">
-         <a href="<?= base_url()?>user" <?=$this->uri->segment(1) == 'user' || $this->uri->segment(1) == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+         <a href="<?= base_url()?>dashboard" <?=$this->uri->segment(1) == 'dashboard' || $this->uri->segment(1) == '' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
+         <i class="fas fa-users">&nbsp</i>
+         <p>
+             Dashboard
+         </p>
+         </a>       
+     </li>
+    <li class="nav-item">
+         <a href="<?= base_url()?>user" <?=$this->uri->segment(1) == 'user' ? 'class="nav-link active"' : 'class="nav-link"' ?>>
          <i class="fas fa-users">&nbsp</i>
          <p>
              User

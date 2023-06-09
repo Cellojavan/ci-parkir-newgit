@@ -35,7 +35,7 @@ class Login extends CI_Controller{
                 $this->session->set_userdata($data);
                 if($this->session->userdata("hak_akses") == "admin"){
                     $this->session->set_flashdata('login', 'login sebagai');
-                    redirect(base_url());
+                    redirect(base_url('dashboard'));
                 }
                 elseif($this->session->userdata("hak_akses") == "manager"){
                     $this->session->set_flashdata('login', 'login sebagai');

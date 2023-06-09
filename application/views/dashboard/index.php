@@ -64,7 +64,8 @@
                     <p>Transaksi Bulan ini</p>
                     </div>
                     <div class="icon">
-                    <i class="fa fa-shopping-bag"></i>
+                    
+                    <!-- <i class="fa fa-shopping-bag"></i>-->
                     </div>
                         <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>

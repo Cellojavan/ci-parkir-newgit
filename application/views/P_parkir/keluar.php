@@ -98,6 +98,11 @@ $this->load->view('templates/header2',$judul);
 						<input type="hidden" value="<?= $parkir['id_pengelolaan_parkir']?>"    name="id"  autocomplete="off">
                         <small class="form-text text-danger"><?= form_error('tglout'); ?></small>
                     </div>
+					<div class="form-group">
+							<label for="petugas">Petugas Out</label>
+							<input type="text" class="form-control" id="petugas"   name="petugasout" value="<?= $this->session->userdata("nama_user");?>" autocomplete="off" readonly>
+							<small class="form-text text-danger"><?= form_error('petugasout'); ?></small>
+                    </div>
 						<div class="box">
 							<div class="box-header with-border">
                       <label for="nopol">Foto Out</label>

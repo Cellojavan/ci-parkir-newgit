@@ -6,6 +6,12 @@ class Dashboard extends CI_Controller{
         parent::__construct();
         $this->load->model("dash_model");
         $this->load->library('form_validation');
+        if($this->session->userdata("hak_akses") == "admin"){
+            
+        }else{
+            $this->session->set_flashdata('flash', 'anda tidak memiliki akses');
+            redirect(base_url('login'));
+        }
     }
 
     public function index(){
