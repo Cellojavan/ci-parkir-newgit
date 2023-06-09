@@ -19,11 +19,38 @@ class dash_model extends CI_model{
         return $this->db->get()->num_rows();
     }
     public function Tday(){
-        
+        date_default_timezone_set("Asia/Jakarta"); 
+        $month = date('Y-m-d');
         $this->db->select("*");
         $this->db->from("pengelolaan_parkir");
         $this->db->join("jenis_kendaraan", "jenis_kendaraan.id_jenis_kendaraan = pengelolaan_parkir.jenis_kendaraan_id", "left");
         $this->db->join("lokasi", "lokasi.id_lokasi = pengelolaan_parkir.lokasi_id", "left");
+        $this->db->like("tgl_in",$month);
+        return $this->db->get()->result_array();
+    }
+    
+     
+    public function bulanan(){
+        date_default_timezone_set("Asia/Jakarta"); 
+        $query = $this->db->query("SELECT * FROM pengelolaan_parkir WHERE lokasi_id = 2 AND DATE_FORMAT(tgl_in, '%Y-%m') = DATE_FORMAT(CURRENT_DATE(), '%Y-%m');");
+        return $query->num_rows();
+    }
+    public function bulanann(){
+        date_default_timezone_set("Asia/Jakarta"); 
+        $month = date('m');
+        $query = $this->db->query("SELECT * FROM pengelolaan_parkir
+        JOIN jenis_kendaraan ON jenis_kendaraan.id_jenis_kendaraan = pengelolaan_parkir.jenis_kendaraan_id WHERE month(tgl_in)='$month'");
+        return $query->result_array();
+    }
+
+    public function bulananDuit(){
+        date_default_timezone_set("Asia/Jakarta"); 
+        $month = date('m');
+        $this->db->select("*");
+        $this->db->from("pengelolaan_parkir");
+        $this->db->join("jenis_kendaraan", "jenis_kendaraan.id_jenis_kendaraan = pengelolaan_parkir.jenis_kendaraan_id", "left");
+        $this->db->join("lokasi", "lokasi.id_lokasi = pengelolaan_parkir.lokasi_id", "left");
+        $this->db->where("MONTH('tgl_in')",$month);
         return $this->db->get()->result_array();
     }
     

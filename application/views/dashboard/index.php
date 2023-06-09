@@ -35,9 +35,33 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-info">
                     <div class="inner">
-                    <h3>150</h3>
+                    <?php function rupiah($angka){ 
+                             $duit = "Rp" . number_format($angka, '0', '', '.'); 
+                             return $duit; 
+    
+                    }?>
+        
+                    <?php if(empty($duit)) { ?>
+                        <?="<h2>Belum Masuk</h2>";?>
+                      <?php }else{ ?>
+                      <?php  foreach($duit as $dt) { ?>
+                          
+                          <?php $hargatotal1[] = $dt['tarif_parkir']; ?>
+                          
+                      <?php  } ?>
+                          <?php $total1 = array_sum($hargatotal1); ?>
+                        
+                          <h3><?= rupiah($total1)?></h3>
+                          
+                          
+                        
+                          
 
-                    <p>New Orders</p>
+                     <?php } ?> 
+                    <h3></h3>
+                    
+
+                    <p>Transaksi Bulan ini</p>
                     </div>
                     <div class="icon">
                     <i class="fa fa-shopping-bag"></i>
@@ -48,12 +72,36 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-success">
                     <div class="inner">
-                      pp
-                        <h3></h3>
-                        <p>Transaksi Hari ini</p>
+                    
+                      <?php if(empty($tday)) { ?>
+                        <?="<h2>Belum Masuk</h2>";?>
+                      <?php }else{ ?>
+                      <?php  foreach($tday as $td) { ?>
+                          
+                          <?php $hargatotal[] = $td['tarif_parkir']; ?>
+                          
+                      <?php  } ?>
+                          <?php $total = array_sum($hargatotal); ?>
+                        
+                          <h3><?= rupiah($total)?></h3>
+                          
+                          
+                        
+                          
+
+                     <?php } ?> 
+                      
+                      
+                
+                      
+               
+                 
+                      
+                      
+                      <p>Transaksi Hari ini</p>
                     </div>
                     <div class="icon">
-                    <i class="fa fa-chart-bar"></i>
+                    <!-- <i class="fa fa-chart-bar"></i>-->
                     </div>
                         <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>

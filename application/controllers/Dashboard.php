@@ -12,6 +12,8 @@ class Dashboard extends CI_Controller{
         $data['judul'] = "Dashboard Admin";
         $data['waktu'] = $this->dash_model->waktu();
         $data['side'] = $this->dash_model->inside(); 
+        $data['bulanan'] = $this->dash_model->bulanan(); 
+        $data['duit'] = $this->dash_model->bulanann(); 
         $data['tday'] = $this->dash_model->Tday(); 
         $this->load->view('templates/header',$data);
         $this->load->view('dashboard/index',$data);
